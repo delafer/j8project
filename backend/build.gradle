@@ -49,9 +49,9 @@ dependencies {
 	implementation('com.fasterxml.jackson.core:jackson-databind:2.11.0')
 	implementation('commons-lang:commons-lang:2.6')
 	implementation('org.bitbucket.b_c:jose4j:0.6.4')
-	implementation('org.owasp.appsensor:appsensor-core:2.3.3')
-	implementation('org.owasp.appsensor:appsensor-configuration-stax:2.3.3')
-	implementation('org.owasp.appsensor:appsensor-ws-rest-client:2.3.3')
+//	implementation('org.owasp.appsensor:appsensor-core:2.3.3')
+//	implementation('org.owasp.appsensor:appsensor-configuration-stax:2.3.3')
+//	implementation('org.owasp.appsensor:appsensor-ws-rest-client:2.3.3')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	compileOnly 'org.projectlombok:lombok'
 	implementation(project(':frontend'))
