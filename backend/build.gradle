@@ -1,17 +1,17 @@
 buildscript {
-	ext {
-		springBootVersion = '2.4.1'
-	}
-	repositories {
-		mavenLocal()
+    ext {
+        springBootVersion = '2.4.1'
+    }
+    repositories {
+        mavenLocal()
         mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 //plugins {
@@ -35,26 +35,21 @@ version = '0.0.1-SNAPSHOT'
 //version = '0.4.0'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
-
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('org.springframework.boot:spring-boot-starter-data-rest')
-	implementation('org.springframework.boot:spring-boot-starter-jersey')
-	implementation('com.h2database:h2')
-	//implementation('javax.xml.bind:jaxb-api:2.3.0')
-	implementation('com.fasterxml.jackson.core:jackson-databind:2.11.0')
-	implementation('commons-lang:commons-lang:2.6')
-	implementation('org.bitbucket.b_c:jose4j:0.6.4')
-//	implementation('org.owasp.appsensor:appsensor-core:2.3.3')
-//	implementation('org.owasp.appsensor:appsensor-configuration-stax:2.3.3')
-//	implementation('org.owasp.appsensor:appsensor-ws-rest-client:2.3.3')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	compileOnly 'org.projectlombok:lombok'
-	implementation(project(':frontend'))
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-data-rest')
+    implementation('org.springframework.boot:spring-boot-starter-jersey')
+    implementation('com.h2database:h2')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.11.0')
+    implementation('commons-lang:commons-lang:2.6')
+    implementation('org.bitbucket.b_c:jose4j:0.6.4')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compileOnly 'org.projectlombok:lombok'
+    implementation(project(':frontend'))
 }
 
 springBoot {
@@ -65,9 +60,15 @@ bootWar { ///bootJar
     //dependsOn jar
     //archiveName = "portalj7.war"
     mainClassName = 'de.creditreform.app.Application'
-	from (project(":frontend").fileTree("dist/t-zucker")) {
-            into('/WEB-INF/classes/resources')
+
+    rootSpec.exclude("**/resources/index.html")
+
+
+    from(project(":frontend").fileTree("dist/t-zucker")) {
+        into('/WEB-INF/classes/resources')
     }
+
+
 }
 
 /*
@@ -76,6 +77,11 @@ task createWar(type : War){
     version = "1.1"
     caseSensitive = true
     classifier = "SNAPSHOT"
+
+from('build/resources/main/resources'){
+   exclude 'index.html'
+ }
+
     	from (project(":frontend").fileTree("dist/t-zucker")) {
             into('/BOOT-INF/classes/resources')
     }
