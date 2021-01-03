@@ -1,0 +1,14 @@
+<!--<h1 class="shadow">Privet</h1>
+<h2 id="bobik">Мой дорогой</h2>
+<h3 class="jufka shadow">дружбан!!!</h3>
+<h2 class="typewriter">трам-пам-пам!!!</h2>-->
+<label >Ваше имя: </label>
+
+<input type="text" [formControl]="name" >
+<br/><br/>
+<button xxx="123">Нажми меня <br/></button>
+<button *ngFor="let x of massive" (click)="edutBaranyPoPoliu(x)">Нажми меня {{x}}<br/></button>
+{{text}}
+<ul>
+    <li><a *ngFor="let x of menu" [href]="x.link" [title]="x.tooltip">{{x.name}}</a></li>
+</ul>

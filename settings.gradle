@@ -1,0 +1,3 @@
+rootProject.name = 'pnw-portal-parent'
+
+include 'frontend', 'backend'

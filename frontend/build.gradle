@@ -1,0 +1,47 @@
+plugins {
+  id 'java'
+  id "com.github.node-gradle.node" version "3.0.0-rc5"
+}
+
+def generatedResources = "src/generated/resources"
+
+sourceSets {
+    main {
+        output.dir(generatedResources, builtBy: 'ngBuild')
+    }
+}
+
+node {
+  version = '15.5.0'
+  yarnVersion = '1.22.10'
+  download = true
+  workDir = file("${project.buildDir}/node")
+  yarnWorkDir = file("${project.buildDir}/yarn")
+  nodeModulesDir = file("${project.projectDir}")
+}
+
+
+jar.dependsOn 'ngBuild'
+
+jar {
+  from 'dist/t-zucker' into 'static'
+}
+
+task audit(type: YarnTask, dependsOn: 'yarn') {
+    args = ['audit']
+}
+
+task ngBuild(type: NodeTask, dependsOn: 'yarn') {
+    script = project.file('node_modules/@angular/cli/bin/ng')
+    args = ['build', '--prod']
+}
+
+task ngServe(type: NodeTask, dependsOn: 'yarn') {
+    script = project.file('node_modules/@angular/cli/bin/ng')
+    args = ['serve', '--open']
+}
+
+processResources.dependsOn 'ngBuild'
+
+clean.delete << file('node_modules')
+clean.delete << file(generatedResources)
