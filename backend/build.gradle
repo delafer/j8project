@@ -64,7 +64,7 @@ bootWar { ///bootJar
     rootSpec.exclude("**/resources/index.html")
 
 
-    from(project(":frontend").fileTree("dist/t-zucker")) {
+    from(project(":frontend").fileTree("dist")) {
         into('/WEB-INF/classes/resources')
     }
 

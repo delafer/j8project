@@ -1,14 +1,44 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    }
-]
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2016",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+  "paths": {
+      "$pipes/*": ["src/app/shared/pipes/*"],
+      "$directives/*": ["src/app/shared/directives/*"],
+      "$validators/*": ["src/app/shared/validators/*"],
+      "$models/*": ["src/app/common/models/*"],
+      "$api/*": ["src/app/common/api/*"],
+      "$service/*": ["src/app/core/services/*"],
+      "$guards/*": ["src/app/core/guards/*"],
+      "$mocks/*": ["src/app/core/mocks/*"],
+      "$features/*": ["src/app/features/*"],
+      "$home/*": ["src/app/features/module.home/*"],
+      "$login/*": ["src/app/features/module.login/*"],
+      "$shared/*": ["src/app/shared/*"],
+      "$common/*": ["src/app/common/*"],
+      "$core/*": ["src/app/core/*"],
+      "$root/*": ["./*"],
+      "$environment/*": ["src/environments/*"],
+      "$app/*": ["src/app/*"],
+      "$testing/*": ["src/testing/*"]
+    },
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,	
+    "enableI18nLegacyMessageIdFormat": false
+  }
 }

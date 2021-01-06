@@ -24,7 +24,7 @@ node {
 jar.dependsOn 'ngBuild'
 
 jar {
-  from 'dist/t-zucker' into 'static'
+  from 'dist' into 'static'
 }
 
 task audit(type: YarnTask, dependsOn: 'yarn') {
