@@ -1,0 +1,7 @@
+<div class="container-fluid align-self-center my-5">
+  <ul id="progressbar" class="text-center d-flex">
+    <li *ngFor="let step of stepsArray;index as i" class="{{step <= activeStep ? 'active hovericon' : ''}} flex-fill" id="step{{step}}" (click)="gotoStep(step)">
+      <div class="showStep">{{step}}</div>
+    </li>
+  </ul>
+</div>
