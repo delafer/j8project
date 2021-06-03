@@ -1,10 +1,13 @@
 buildscript {
     ext {
         springBootVersion = '2.4.1'
+        dslJsonVersion = '1.9.8'
     }
     repositories {
         mavenLocal()
         mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -30,6 +33,8 @@ sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
 group = 'net.korvin.j7'
 version = '0.0.1-SNAPSHOT'
+dslJsonVersion = ext.dslJsonVersion
+
 
 //archivesBaseName archivesBaseName = 'spring-boot-kisses-angular'
 //version = '0.4.0'
@@ -40,16 +45,22 @@ repositories {
 
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-data-rest')
-    implementation('org.springframework.boot:spring-boot-starter-jersey')
+//    implementation('org.springframework.boot:spring-boot-starter-web')
+//    implementation('org.springframework.boot:spring-boot-starter-data-rest')
+//    implementation('org.springframework.boot:spring-boot-starter-jersey')
+    //implementation('org.springframework.boot:spring-boot-starter-websocket')
+    implementation('org.springframework.boot:spring-boot-starter-webflux')
     implementation('com.h2database:h2')
     implementation('com.fasterxml.jackson.core:jackson-databind:2.11.0')
     implementation('commons-lang:commons-lang:2.6')
+    implementation("com.dslplatform:dsl-json-java8:${dslJsonVersion}")
+    annotationProcessor ("com.dslplatform:dsl-json-java8:${dslJsonVersion}")
+    compileOnly("javax.json.bind:javax.json.bind-api")
     implementation('org.bitbucket.b_c:jose4j:0.6.4')
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     compileOnly 'org.projectlombok:lombok'
-    implementation(project(':frontend'))
+    //implementation(project(':frontend'))
 }
 
 springBoot {
@@ -64,9 +75,9 @@ bootWar { ///bootJar
     rootSpec.exclude("**/resources/index.html")
 
 
-    from(project(":frontend").fileTree("dist")) {
-        into('/WEB-INF/classes/resources')
-    }
+//    from(project(":frontend").fileTree("dist")) {
+//        into('/WEB-INF/classes/resources')
+//    }
 
 
 }

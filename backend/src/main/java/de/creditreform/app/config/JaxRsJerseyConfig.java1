@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.ws.rs.ApplicationPath;
 
-@Configuration
-@ApplicationPath("/api")
+//@Configuration
+//@ApplicationPath("/api")
 public class JaxRsJerseyConfig extends ResourceConfig {
     public JaxRsJerseyConfig() {
         super();
