@@ -21,9 +21,9 @@ public class InitializerClass implements ApplicationListener<ApplicationReadyEve
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        System.out.println("RRRRRRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDYYYYYYYYYYYYYYY!!!!!!!!");
+        System.out.println("Ready!!!!!!!!");
         this.eventUnicastService.getMessages().subscribe(x -> {
-            System.out.println(x);
+            System.out.println(":::"+x);
         });
     }
 }
